@@ -1,9 +1,15 @@
-import React,{ useState,useEffect } from 'react';
-//API
+import React, { useState, useEffect } from 'react';
+
+// API
 import { getCoin } from '../services/api';
 
+// Components
+import Loader from './Loader';
+
 const Landing = () => {
-    const [coins,setCoins] = useState([]);
+
+    const [coins, setCoins] = useState([]);
+
     useEffect(() => {
         const fetchAPI = async () => {
             const data = await getCoin();
@@ -12,17 +18,17 @@ const Landing = () => {
         }
 
         fetchAPI()
-    },[])
+    }, [])
+
     return (
         <>
-        <input type='text' placeholder='Search...'/>
-        <div>
-            {
-                coins.length ? <div>
-                    {coins.map(coin => <p key={coin.id}>{coin.name}</p>)}
-                </div>: <h1>Loading ...</h1>
-            }
-        </div>
+            <input type="text" placeholder="Search" />
+            <div>
+                {coins.length ? <div>{
+                    coins.map(coin => <p key={coin.id}>{coin.name}</p>)
+                }</div> : <Loader />}
+                
+             </div> 
         </>
     );
 };
