@@ -27,7 +27,7 @@ const Landing = () => {
     const searchHandler = event => {
         setSearch(event.target.value)
     }
-    const searchedCoins = coins.filter(coin => coin.name.toLowercase().include(search.toLowercase()))
+    const searchedCoins = coins.filter(coin => coin.name.toLowerCase().include(search.toLowerCase()))
 
     return (
         <>
@@ -36,7 +36,7 @@ const Landing = () => {
                 coins.length ?
                     <div className={styles.coinContainer}>
                         {
-                            searchedCoins.map(coin => <Coin
+                            coins.map(coin => <Coin
                                 key={coin.id}
                                 name={coin.name}
                                 image={coin.image}
