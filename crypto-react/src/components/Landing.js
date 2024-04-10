@@ -27,7 +27,7 @@ const Landing = () => {
     const searchHandler = event => {
         setSearch(event.target.value)
     }
-    const searchedCoins = coins.filter(coin => coin.name.toLowerCase().include(search.toLowerCase()))
+    // const searchedCoins = coins.filter(coin => coin.name.toLowerCase().include(search.toLowerCase()))
 
     return (
         <>

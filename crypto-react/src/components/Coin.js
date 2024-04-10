@@ -7,10 +7,10 @@ const Coin = ({name,image,symbol,price,priceChange,marketCap}) => {
         <div className={styles.container}>
             <img className={styles.image} src={image} alt={name} />
             <span className={styles.name}>{name}</span>
-            <span className={styles.symbol}>{symbol.toUppercase()}</span>
-            <span className={styles.currenPrice}>{price.toLocalString()}</span>
+            <span className={styles.symbol}>{symbol}</span>
+            <span className={styles.currenPrice}>{price}</span>
             <span className={priceChange > 0 ? styles.greenPriceChange : styles.redPriceChange}>{priceChange.toFixed(2)}</span>
-            <span>{marketCap.toLocalString()}</span>
+            <span>{marketCap}</span>
         </div>
     );
 };
