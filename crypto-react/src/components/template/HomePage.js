@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 // API
-import { getCoin } from '../services/api';
+import { getCoinList } from '../../services/api';
 
 // Components
-import Loader from './Loader';
-import Coin from './Coin';
+import Loader from '../Loader';
 
 //Styles
-import styles from "./Landing.module.css"; 
+import styles from "./HomePage.module.css"; 
+import TableCoin from '../modules/TableCoin';
 
 const Landing = () => {
 
@@ -16,8 +16,7 @@ const Landing = () => {
     const [search,setSearch] = useState(" ");
     useEffect(() => {
         const fetchAPI = async () => {
-            const data = await getCoin();
-            console.log(data)
+            const data = await getCoinList();
             setCoins(data)
         }
 
@@ -32,24 +31,14 @@ const Landing = () => {
     return (
         <>
             <input className={styles.input} type="text" placeholder="Search" value={search} onChange={searchHandler} />
+            <TableCoin coins={coins} />
             {
                 coins.length ?
                     <div className={styles.coinContainer}>
-                        {
-                            coins.map(coin => <Coin
-                                key={coin.id}
-                                name={coin.name}
-                                image={coin.image}
-                                symbol={coin.symbol}
-                                price={coin.current_price}
-                                marketCap={coin.market_cap}
-                                priceChange={coin.price_change_percentage_24h}
-                            />)
-                        }
+                        <TableCoin coins={coins} />
                     </div> :
-
                     <Loader />
-            }
+                }
         </>
     );
 };
