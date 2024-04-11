@@ -1,9 +1,9 @@
 .coinContainer {
     margin: 50px auto;
-    border: 1px solid silver;
     border-radius: 10px;
-    width: fit-content;
-    background-color: #f6f6f6;
+    max-width: 1200px;
+    background-color: #302c2c;
+    box-shadow: 1px 1px 10px #928080;
 }
 .input {
     width: 300px;

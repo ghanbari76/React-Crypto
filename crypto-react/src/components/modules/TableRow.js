@@ -1,3 +1,6 @@
+//style
+import styles from "./TableRow.module.css";
+
 const TableRow = ({
     coin : {
         image,
@@ -12,14 +15,14 @@ const TableRow = ({
     return (
         <tr>
             <td>
-                <div>
+                <div className={styles.symbol}>
                     <img src={image} alt={name} />
                     <span >{symbol.toUpperCase()}</span>
                 </div>
             </td>
             <td>{name}</td>
             <td>${current_price.toLocaleString()}</td>
-            <td>{price_change.toFixed(2)}%</td>
+            <td className={price_change > 0 ? styles.success : styles.error}>{price_change.toFixed(2)}%</td>
             <td>{total_volume.toLocaleString()}</td>  
             <td>{market_cap.toLocaleString()}</td>  
         </tr>

@@ -31,7 +31,6 @@ const Landing = () => {
     return (
         <>
             <input className={styles.input} type="text" placeholder="Search" value={search} onChange={searchHandler} />
-            <TableCoin coins={coins} />
             {
                 coins.length ?
                     <div className={styles.coinContainer}>

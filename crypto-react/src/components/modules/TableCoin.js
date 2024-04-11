@@ -6,7 +6,7 @@ import styles from "./TableCoin.module.css"
 const TableCoin = ({ coins }) => {
     return (
         <div className={styles.container}>
-            <table>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>Coin</th>
