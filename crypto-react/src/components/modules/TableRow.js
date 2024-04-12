@@ -22,7 +22,7 @@ const TableRow = ({
             </td>
             <td>{name}</td>
             <td>${current_price.toLocaleString()}</td>
-            <td className={price_change > 0 ? styles.success : styles.error}>{price_change.toFixed(2)}%</td>
+            <td className={price_change > 0 ? styles.success : styles.error}>{price_change}%</td>
             <td>{total_volume.toLocaleString()}</td>  
             <td>{market_cap.toLocaleString()}</td>  
         </tr>
