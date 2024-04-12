@@ -33,15 +33,15 @@ const Landing = () => {
 
     return (
         <>
-        <Pagination page={page} setPage={setPage} />
             <input className={styles.input} type="text" placeholder="Search" value={search} onChange={searchHandler} />
             {
                 coins.length ?
-                    <div className={styles.coinContainer}>
+                <div className={styles.coinContainer}>
                         <TableCoin coins={coins} />
                     </div> :
                     <Loader />
                 }
+                <Pagination page={page} setPage={setPage} />
         </>
     );
 };
