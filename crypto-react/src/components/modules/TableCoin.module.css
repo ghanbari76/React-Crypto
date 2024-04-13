@@ -4,6 +4,10 @@
     margin: 50px 0 100px;
     min-height: 1000px; 
 }
+.spinner h2 {
+    margin-top: 20px;
+    color: #3874ff;
+}
 .table {
     width: 100%;
     border-collapse: collapse;

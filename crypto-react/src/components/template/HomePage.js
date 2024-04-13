@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { getCoinList } from '../../services/api';
 
 // Components
-import Loader from '../Loader';
 import Pagination from '../modules/Pagination';
 import TableCoin from '../modules/TableCoin';
 
@@ -14,13 +13,16 @@ import styles from "./HomePage.module.css";
 const Landing = () => {
 
     const [coins, setCoins] = useState([]);
+    const [isLoading,setIsLoading] = useState(true);
     const [search,setSearch] = useState(" ");
     const [page,setPage] = useState(1);
 
     useEffect(() => {
+        setIsLoading(true);
         const fetchAPI = async () => {
             const data = await getCoinList(page);
-            setCoins(data)
+            setCoins(data);
+            setIsLoading(false);
         }
 
         fetchAPI()
@@ -34,13 +36,7 @@ const Landing = () => {
     return (
         <>
             <input className={styles.input} type="text" placeholder="Search" value={search} onChange={searchHandler} />
-            {
-                coins.length ?
-                <div className={styles.coinContainer}>
-                        <TableCoin coins={coins} />
-                    </div> :
-                    <Loader />
-                }
+                <TableCoin coins={coins} isLoading={isLoading}/>
                 <Pagination page={page} setPage={setPage} />
         </>
     );
