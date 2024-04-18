@@ -6,6 +6,9 @@ const API_KEY = "CG-scQZLcmrdMrdr33ofkWtjSes";
 const getCoinList = async (page, currency) => {
     const response = await axios.get(`${BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=20&page=${page}&x-cg-pro-api-key:${API_KEY}`);
     return response.data;
-}
+};
 
-export { getCoinList };
+const searchCoin = (query) => 
+    `${BASE_URL}/search?query=${query}&x-cg-demo-api-key:${API_KEY}`; 
+
+export { getCoinList, searchCoin };
