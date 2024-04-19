@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
+//Api
 import { searchCoin } from '../../services/api';
+
+//Style
+import styles from "./Search.module.css";
 
 const Search = ({ currency, setCurrency }) => {
     const [text,setText] = useState("");
@@ -36,7 +41,7 @@ const Search = ({ currency, setCurrency }) => {
     } ,[text]);
 
     return (
-        <div>
+        <div className={styles.searchBox}>
             <input 
                 type="text"
                 placeholder="Search"
@@ -48,16 +53,18 @@ const Search = ({ currency, setCurrency }) => {
                 <option value="eur">EUR</option>
                 <option value="jpy">JPY</option>
             </select>
-            <div>
-                <ul>
-                    {coins.map((coin) => (
-                        <li key={coin.id}>
-                            <img src={coin.thumb} alt={coin.name} />
-                            <p>{coin.name}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            { !!coins.length && (
+                <div className={styles.searchResult}>
+                    <ul>
+                        {coins.map((coin) => (
+                            <li key={coin.id}>
+                                <img src={coin.thumb} alt={coin.name} />
+                                <p>{coin.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
