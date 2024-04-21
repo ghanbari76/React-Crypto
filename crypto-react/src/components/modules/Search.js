@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { RotatingLines } from "react-loader-spinner";
 //Api
 import { searchCoin } from '../../services/api';
 
@@ -9,12 +9,16 @@ import styles from "./Search.module.css";
 const Search = ({ currency, setCurrency }) => {
     const [text,setText] = useState("");
     const [coins,setCoins] = useState([]);
+    const [isLoading,setIsLoading] = useState(false);
 
     useEffect(() => {
         const controller = new AbortController();
 
         setCoins([]);
-        if(!text) return;
+        if(!text) {
+            setIsLoading(false);
+            return;
+        };
 
         const search = async () => {
             try {
@@ -24,6 +28,7 @@ const Search = ({ currency, setCurrency }) => {
                 const json = await response.json();
                 console.log(json);
                 if (json.coins) {
+                    setIsLoading(false);
                     setCoins(json.coins);
                 } else {
                     alert(json.status.error_message);
@@ -36,7 +41,9 @@ const Search = ({ currency, setCurrency }) => {
 
         }
 
-        search()
+        setIsLoading(true);
+        search();
+        
         return () => controller.abort();
     } ,[text]);
 
@@ -53,8 +60,16 @@ const Search = ({ currency, setCurrency }) => {
                 <option value="eur">EUR</option>
                 <option value="jpy">JPY</option>
             </select>
-            { !!coins.length && (
+            {(!!coins.length || isLoading) && (
                 <div className={styles.searchResult}>
+                    { isLoading && (
+                        <RotatingLines 
+                            width='50px'
+                            height='50px'
+                            strokeWidth='3'
+                            strokeColor='#3874ff'
+                        />   
+                    )}
                     <ul>
                         {coins.map((coin) => (
                             <li key={coin.id}>
