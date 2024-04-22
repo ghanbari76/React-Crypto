@@ -5,7 +5,7 @@ import TableRow from "./TableRow";
 //Styles
 import styles from "./TableCoin.module.css"
 
-const TableCoin = ({ coins, isLoading }) => {
+const TableCoin = ({ coins, isLoading, setChart }) => {
     return (
         <div className={styles.container}>
             { isLoading ? (
@@ -27,7 +27,7 @@ const TableCoin = ({ coins, isLoading }) => {
                 </thead>
                 <tbody>
                     {coins.map( coin => 
-                    <TableRow coin={coin} key={coin.id} />
+                    <TableRow coin={coin} key={coin.id} setChart={setChart} />
                 )}
                 </tbody>
             </table>)}
