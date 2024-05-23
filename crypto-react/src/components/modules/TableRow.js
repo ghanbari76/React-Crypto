@@ -3,8 +3,8 @@ import { marketChart } from "../../services/api";
 //style
 import styles from "./TableRow.module.css";
 
-const TableRow = ({
-    coin : {
+const TableRow = ({ coin, setChart }) => {
+    const {
         id,
         image,
         symbol,
@@ -13,15 +13,13 @@ const TableRow = ({
         total_volume,
         market_cap,
         price_change_percentage_24h : price_change, 
-    },
-    setChart,
-}) => {
-
+    } = coin;
+    
     const showHandler = async () => {
         try {
             const response = await fetch(marketChart(id));
             const json = await response.json();
-            setChart(json);
+            setChart({ ...json, coin });
         } catch (error) {
             setChart(null);
         }
