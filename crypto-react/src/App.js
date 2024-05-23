@@ -1,10 +1,12 @@
-import './App.css';
 import HomePage from './components/template/HomePage';
+import Layout from './layouts/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
+    <div>
+      <Layout>
+        <HomePage />
+      </Layout>
     </div>
   );
 }
